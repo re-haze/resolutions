@@ -1,0 +1,22 @@
+.textStyle{
+    width: 26em;
+    
+}
+.button-grid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.font-button{
+
+    width: 20rem;
+    flex: 50%;
+    flex: 1 0 40%;
+    text-align: center;
+    word-wrap: break-word;
+    height: 3em;
+    font-size: 1.5rem;
+    margin: 0.2rem;
+    padding: 0.1rem;
+}

@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter');
 
 body {
- 
+ font-family: 'Inter', sans-serif;
   justify-content: center;
   height: 100%;
   width: 100%;
@@ -8,6 +9,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: #0B2027;
+  margin:
 }
 
 .container{
@@ -18,9 +20,9 @@ body {
   align-items: center;
   width: 100%;
   text-align: center;
-  margin: 0 16px;
+  margin: 0 4em;
   padding: 2em;
-  border-radius: 8px;
+  border-radius: 1em;
   max-width: 414px;
 }
 

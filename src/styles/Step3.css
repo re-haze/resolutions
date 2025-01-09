@@ -1,0 +1,63 @@
+.body{
+
+}
+
+.textStyle{
+    width: 26em;
+    
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; 
+}
+.ball{
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+}
+
+.outer-ball {
+    top: 1em;
+    left:1em;
+    position: relative;
+    background-color: #FEFCFD; 
+    animation: rotate-outer 5s linear infinite;
+}
+
+.inner-ball {
+    top: 1em;
+    left:1em;
+    position: relative;
+    background-color: #CD9876; 
+    animation: rotate-inner 5s linear infinite;
+}
+
+@keyframes rotate-outer {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(3em);  
+      }
+    100% {
+        transform: translate(-50%, -50%) rotate(-360deg) translateX(3em); 
+    }
+}
+
+@keyframes rotate-inner {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(2em);  
+      }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(2em); 
+    }
+}
+
+
+.circle-container{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 10em
+}
