@@ -4,37 +4,41 @@ import Step1 from "../components/Steps/Step1";
 import Step2 from"../components/Steps/Step2";
 import Step3 from"../components/Steps/Step3";
 import Step4 from"../components/Steps/Step4";
+import Step5 from"../components/Steps/Step4";
 import "../styles/App.css"
 
 const App = () => {
+  
   const totalSteps = 5; 
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    resolution: "",
-    details: "",
-  });
+    goals: [{ id: 1, resolution: "" }], 
+    profilePicture: "",
+    username: "",
+    artTag: "",
+    primaryFont: "",
+    secondaryFont: "",
+    innerBallColor: "",
+    outerBallColor: "",
+  })
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = (name, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+
+ 
 
   const nextStep = () => {
-    if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
-  };
+    if (currentStep < totalSteps) setCurrentStep((prev) => prev + 1);
+  }
 
   const prevStep = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
-  };
+    if (currentStep > 1) setCurrentStep((prev) => prev - 1);
+  }
 
-  const handleDownload = () => {
-    alert("Form submitted: " + JSON.stringify(formData));
-    setCurrentStep(totalSteps + 1);
-  };
-
-  const handleShare = () => {
-    alert("Form submitted: " + JSON.stringify(formData));
-    setCurrentStep(totalSteps + 1);
-  };
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -46,17 +50,11 @@ const App = () => {
       case 4:
         return <Step4 data={formData} handleChange={handleChange} />;
       case 5:
-        return (
-          <div>
-          <button onClick={handleDownload}>Download</button>
-          <button onClick={handleShare}>Share</button>
-        </div>
-          
-        );
+        return <Step5 data={formData} handleChange={handleChange} />;
       default:
         return null;
     }
-  };
+  }
 
   return (
     <div className="container dark-mode" >
@@ -70,7 +68,7 @@ const App = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default App;

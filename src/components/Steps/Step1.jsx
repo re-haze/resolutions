@@ -3,43 +3,41 @@ import "../../styles/Step1.css";
 
 const Step1 = ({ data, handleChange }) => {
   const maxChars = 300;
-  const [goals, setGoals] = useState([{ id: 1, resolution: data.resolution || "" }]);
+//   const [goals, setGoals] = useState([{ id: 1, resolution: data.resolution || "" }]);
 
   
   const handleGoalChange = (id, value) => {
-    setGoals((prevGoals) =>
-      prevGoals.map((goal) =>
-        goal.id === id ? { ...goal, resolution: value } : goal
-      )
-    )
+    const updatedGoals = data.goals.map((goal) =>
+      goal.id === id ? { ...goal, resolution: value } : goal
+    );
+    handleChange("goals", updatedGoals);
   }
 
 
   const addGoal = () => {
-    setGoals((prevGoals) => [
-      ...prevGoals,
-      { id: prevGoals.length + 1, resolution: "" },
-    ]);
+    const newGoal = { id: data.goals.length + 1, resolution: "" };
+    handleChange("goals", [...data.goals, newGoal]);
   }
 
   const removeGoal = (id) => {
-      setGoals((prevGoals) => prevGoals.filter((goal) => goal.id !== id));
+    const updatedGoals = data.goals.filter((goal) => goal.id !== id);
+    handleChange("goals", updatedGoals);
     
   }
 
   return (
     <div>
       <h2>Goals for 2025</h2>
-      {goals.map((goal) => (
+      {data.goals.map((goal) => (
         <div key={goal.id} className="goal-container">
           <textarea
             id={`goal-${goal.id}`}
             name={`goal-${goal.id}`}
             className="textStyle"
             value={goal.resolution}
-            onChange={(e) => handleGoalChange(goal.id, e.target.value)}
+            onChange={(e) => handleGoalChange(goal.id, e.target.value)} 
             maxLength={maxChars}
-            placeholder={`Enter Goal here`}
+            placeholder="Enter Goal here"
             
             
           />
@@ -61,7 +59,7 @@ const Step1 = ({ data, handleChange }) => {
         + Add Goal
       </button>
     </div>
-  )
-}
+  );
+};
 
 export default Step1;

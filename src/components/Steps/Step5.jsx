@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import "../../styles/Step5.css";
+import "../../styles/Step1.css";
 
 const Step5 = ({ data, handleChange }) => {
-  const {
-    username,
-    artTag,
-    resolutions = [],
-    profilePicture,
-    primaryFont,
-    secondaryFont,
-    innerBallColor,
-    outerBallColor,
-  } = data;
+ 
+
 
 
  
-
   return (
     <div>
       <h2>Complete!</h2>
@@ -30,6 +21,7 @@ const Step5 = ({ data, handleChange }) => {
         </div>
         <div className='polaroid-background'><div className='img-container'></div></div>
         <div className='artTag-text'></div>
+
       </div>
     </div>
   )
