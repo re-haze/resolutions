@@ -69,12 +69,15 @@ const Step3 = ({ data, handleChange }) => {
           style={{ backgroundColor: outerBallColor }}
           onClick={() => toggleColorPicker("outer")}
         ></div>
+        
         {isColorPickerVisible && currentBall === "outer" && (
           <div ref={colorPickerRef} className="color-picker-container">
+            <h3>Primary Color</h3>
             <HexColorPicker
               color={outerBallColor}
               onChange={(color) => handleColorChange(color, "outer")}
             />
+             
           </div>
         )}
 
@@ -85,6 +88,7 @@ const Step3 = ({ data, handleChange }) => {
         ></div>
         {isColorPickerVisible && currentBall === "inner" && (
           <div ref={colorPickerRef} className="color-picker-container">
+            <h3>Secondary Color</h3>
             <HexColorPicker
               color={innerBallColor}
               onChange={(color) => handleColorChange(color, "inner")}

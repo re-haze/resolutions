@@ -20,3 +20,7 @@
     margin: 0.2rem;
     padding: 0.1rem;
 }
+.font-button.selected {
+    border-color: #515aff;
+    background: #a7b6d3;
+  }

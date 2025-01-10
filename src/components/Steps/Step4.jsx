@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import "../../styles/Step1.css";
+import "../../styles/Step4.css";
 
 const Step4 = ({ data, handleChange }) => {
-  const [selectedFont, setSelectedFont] = useState('');
+  const [primaryFont, setPrimaryFont] = useState(data.primaryFont || '');
+  const [secondaryFont, setSecondaryFont] = useState(data.secondaryFont || '');
   
   const fonts = [
     'Inter',
@@ -24,11 +25,24 @@ const Step4 = ({ data, handleChange }) => {
     };
   }, [])
 
-  const handleFontSelect = (font , targetFont) => {
-    setSelectedFont(font);
-    handleChange(targetFont, font);
-  }
   
+  const handleFontSelect = (font, type) => {
+    if (type === 'primaryFont') {
+      setPrimaryFont(font);
+    } else {
+      setSecondaryFont(font);
+    }
+    
+    const changeEvent = {
+      target: {
+        type: 'button',
+        name: type,
+        value: font
+      }
+    };
+    handleChange(changeEvent);
+  };
+
 
   return (
     <div>
@@ -39,7 +53,7 @@ const Step4 = ({ data, handleChange }) => {
           <button
             key={font}
             onClick={() => handleFontSelect(font, 'primaryFont')}
-            className={`font-button ${selectedFont === font ? 'selected' : ''}`}
+            className={`font-button ${primaryFont === font ? 'selected' : ''}`}
             style={{ fontFamily: `"${font}", sans-serif` }}
           >
             {font}
@@ -52,7 +66,7 @@ const Step4 = ({ data, handleChange }) => {
           <button
             key={font}
             onClick={() => handleFontSelect(font, 'secondaryFont')}
-            className={`font-button ${selectedFont === font ? 'selected' : ''}`}
+            className={`font-button ${secondaryFont === font ? 'selected' : ''}`}
             style={{ fontFamily: `"${font}", sans-serif` }}
           >
             {font}
