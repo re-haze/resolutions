@@ -1,0 +1,194 @@
+.step5-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    min-height: 80vh;
+    justify-content: center;
+}
+
+.final-composition {
+    position: relative;
+    width: 600px;
+    height: 450px;
+    /* Slight height increase for rotation */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The Paper Card */
+.goals-card {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    /* Push down to clear paperclip potentially */
+    width: 450px;
+    /* Narrower to show more polaroid? User img has it quite wide. */
+    height: 450px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px 40px 30px 160px;
+    /* More left padding for overlap */
+    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.goals-title {
+    font-size: 2.5rem;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    text-align: right;
+    line-height: 1.2;
+}
+
+.resolutions-list {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end;
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+.resolution-strip {
+    padding: 8px 15px;
+    font-size: 1rem;
+    color: #333;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.signature {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #888;
+}
+
+/* -----------------------------------------------------------
+   NEW POLAROID STYLES (ASSET BASED + SLANTED/STACKED)
+   ----------------------------------------------------------- */
+
+.polaroid-wrapper {
+    position: absolute;
+    left: 25px;
+    top: 20px;
+    width: 260px;
+    z-index: 5;
+    transform: rotate(15deg) skewX(2.5deg);
+    /* Tilted right */
+    filter: drop-shadow(8px 8px 20px rgba(0, 0, 0, 0.25));
+    /* Deeper shadow */
+}
+
+/* Stack decoration removed per user request */
+
+
+.polaroid-structure {
+    position: relative;
+    width: 100%;
+}
+
+/* The PNG Frame */
+.polaroid-base {
+    width: 120%;
+    display: block;
+    position: relative;
+    z-index: 10;
+    /* Image frame on top of everything internal */
+    pointer-events: none;
+    /* Let clicks pass if needed */
+}
+
+/* The User Photo Insert */
+.photo-insert {
+    position: absolute;
+    transform: rotate(10deg) skewX(2.5deg);
+    top: 27px;
+    left: 67px;
+    width: 12.7em;
+    height: 17.5em;
+    /* Adjust this to match the brown area */
+    z-index: 15;
+    overflow: hidden;
+}
+
+.no-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+}
+
+/* Paperclip SVG */
+.paperclip {
+    position: absolute;
+    top: -25px;
+    right: 35%;
+    width: 30px;
+    height: 80px;
+    z-index: 20;
+    pointer-events: none;
+    transform: rotate(-45deg);
+    /* Slight random tilt relative to photo */
+}
+
+.profile-pic {
+    min-width: 10em;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-pic img {}
+
+.art-tag {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #555;
+    font-weight: 500;
+    z-index: 12;
+    /* On top of frame */
+    transform: rotate(10deg) skewX(2deg);
+}
+
+
+.download-btn {
+    margin-top: 40px;
+    padding: 12px 35px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: 600;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    background-color: #45a049;
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+}
+
+@media (max-width: 700px) {
+    .final-composition {
+        transform: scale(0.55);
+        margin: -80px 0;
+    }
+}

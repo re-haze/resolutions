@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import ProgressBar from "../components/ProgressBar/ProgressBar";
 import Step1 from "../components/Steps/Step1";
-import Step2 from"../components/Steps/Step2";
-import Step3 from"../components/Steps/Step3";
-import Step4 from"../components/Steps/Step4";
-import Step5 from"../components/Steps/Step4";
+import Step2 from "../components/Steps/Step2";
+import Step3 from "../components/Steps/Step3";
+import Step4 from "../components/Steps/Step4";
+import Step5 from "../components/Steps/Step5";
 import "../styles/App.css"
 
 const App = () => {
-  
-  const totalSteps = 5; 
+
+  const totalSteps = 5;
   const [currentStep, setCurrentStep] = useState(1);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [formData, setFormData] = useState({
-    goals: [{ id: 1, resolution: "" }], 
+    goals: [{ id: 1, resolution: "" }],
     profilePicture: "",
     username: "",
     artTag: "",
@@ -22,14 +23,24 @@ const App = () => {
     outerBallColor: "",
   })
 
-  const handleChange = (name, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }))
+  const handleChange = (nameOrEvent, value) => {
+    if (typeof nameOrEvent === 'object' && nameOrEvent.target) {
+      const { name, value } = nameOrEvent.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [nameOrEvent]: value,
+      }));
+    }
   }
 
- 
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
 
   const nextStep = () => {
     if (currentStep < totalSteps) setCurrentStep((prev) => prev + 1);
@@ -57,16 +68,23 @@ const App = () => {
   }
 
   return (
-    <div className="container dark-mode" >
-      <h1>2025 Resolutions</h1>
-      <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
-      <div>{renderStep()}</div>
-      {currentStep <= totalSteps && (
-        <div className="buttons">
-          {currentStep > 1 && <button onClick={prevStep}>Previous</button>}
-          {currentStep < totalSteps && <button onClick={nextStep}>Next</button>}
-        </div>
-      )}
+    <div className={`app-wrapper ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+      <div className="theme-toggle-container">
+        <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle Dark Mode">
+          {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+        </button>
+      </div>
+      <div className="container">
+        <h1>2026 Resolutions</h1>
+        <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+        <div>{renderStep()}</div>
+        {currentStep <= totalSteps && (
+          <div className="buttons">
+            {currentStep > 1 && <button onClick={prevStep}>Previous</button>}
+            {currentStep < totalSteps && <button onClick={nextStep}>Next</button>}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

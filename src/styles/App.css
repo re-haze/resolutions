@@ -1,56 +1,186 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@400;600&display=swap');
+
+:root {
+  /* Default Light Mode Variables */
+  --bg-color: #f9f4f1;
+  --container-bg: #ffffff;
+  --text-color: #5d534a;
+  --heading-color: #d4a373;
+  --button-bg: #faedcd;
+  --button-text: #5d534a;
+  --button-border: #e0c040;
+  --shadow-color: rgba(230, 200, 180, 0.4);
+  --input-bg: #fff;
+  --input-border: #e0e0e0;
+}
+
+/* Dark Mode Overrides - Applied when .dark-mode class is present on wrapper */
+.dark-mode {
+  --bg-color: #1a1a1a;
+  --container-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  --heading-color: #f0c070;
+  --button-bg: #404040;
+  --button-text: #f0f0f0;
+  --button-border: #f0c070;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --input-bg: #3d3d3d;
+  --input-border: #555;
+}
 
 body {
- font-family: 'Inter', sans-serif;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  display: flex;
   margin: 0;
-  font-family: Arial, sans-serif;
-  color: #0B2027;
-  margin:
+  padding: 0;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
-.container{
-  flex-direction:column;
-  position: relative;
-  display: flex;
+.app-wrapper {
+  background-color: var(--bg-color);
+  color: var(--text-color);
   min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.theme-toggle-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.theme-toggle-btn {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 2px solid var(--button-border);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 800px;
+  padding: 3em;
+  border-radius: 3em;
+  /* More rounded as requested */
+  background-color: var(--container-bg);
+  box-shadow: 0 15px 40px var(--shadow-color);
+  /* Deeper, softer shadow */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container h2 {
   text-align: center;
-  margin: 0 4em;
-  padding: 2em;
-  border-radius: 1em;
-  max-width: 414px;
+  width: 100%;
+  margin-bottom: 25px;
+  color: var(--heading-color);
+  font-family: 'Outfit', sans-serif;
 }
 
-.buttons{
-  position: relative;
+h1 {
+  font-family: 'Outfit', sans-serif;
+  /* Cleaner font */
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 1em;
+  /* More spacing */
+  font-size: 2.8rem;
+  letter-spacing: -0.5px;
+}
+
+/* General Input Styling for Step Components */
+input[type="text"],
+textarea {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--button-border);
+}
+
+/* Button Styling */
+button {
+  cursor: pointer;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 2px solid var(--button-border);
+  padding: 12px 24px;
+  border-radius: 30px;
+  /* Pillow shape */
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin: 0 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+button:hover {
+  background-color: var(--button-border);
+  /* Invert or accent on hover */
+  color: #fff;
+  /* Assuming white text looks good on accent */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.buttons {
+  margin-top: 3em;
+  /* More breathing room */
   display: flex;
-  align-self: center;
-  justify-self: center;
   justify-content: center;
-}
-.dark-mode{
-  background-color: #0B2027;  /*dark mode*/
-  background: #0B2027;
-  color: #684551;
+  gap: 20px;
 }
 
-.light-mode{
-  background-color: #40798C;
-}
-
-@media (min-width: 768px) {
+@media (max-width: 600px) {
   .container {
-    max-width: 600px;
+    padding: 1.5em;
+    border-radius: 2em;
+    width: 90%;
   }
-}
 
-@media (min-width: 1200px) {
-  .container {
-    max-width: 800px; 
+  h1 {
+    font-size: 2rem;
   }
 }

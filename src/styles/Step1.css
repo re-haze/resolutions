@@ -1,4 +1,82 @@
-.textStyle{
+/* Center the title */
+.step1-container h2 {
+    text-align: center;
+    width: 100%;
+}
+
+.goal-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 25px;
+    /* Increased margin for overlapping button space */
+    width: 100%;
+}
+
+.input-wrapper {
+    position: relative;
     width: 26em;
-    
+}
+
+.textStyle {
+    width: 100%;
+    min-height: 4em;
+    resize: vertical;
+    padding: 15px 15px 25px 15px;
+    /* Extra bottom padding for char count */
+    box-sizing: border-box;
+}
+
+.charCount {
+    position: absolute;
+    bottom: 18px;
+    right: 24px;
+    font-size: 0.75rem;
+    color: #999;
+    pointer-events: none;
+    font-weight: 500;
+}
+
+/* X button properly positioned at Top Right of the text box */
+.removeButton {
+    position: absolute;
+    top: 4px;
+    right: -6px;
+    color: #ff9999 !important;
+    border: none;
+    background-color: var(--input-bg);
+    padding: 0 !important;
+    font-size: 0.9rem !important;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px !important;
+    box-shadow: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.removeButton:hover {
+    background-color: #ff9999 !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+/* Smaller Add button, centered */
+.addButton {
+    display: block;
+    margin: 20px auto 0 auto;
+    padding: 8px 20px !important;
+    font-size: 0.9rem !important;
+    background-color: transparent !important;
+    border: 2px dashed #d4a373 !important;
+    color: #d4a373 !important;
+}
+
+.addButton:hover {
+    background-color: #fff8e1 !important;
+    border-style: solid !important;
+    transform: translateY(-2px);
 }
